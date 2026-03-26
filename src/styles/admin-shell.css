@@ -122,15 +122,26 @@
   color: var(--color-warning-300);
 }
 
-.detail-card {
+.alert-demo-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  justify-items: start;
+}
+
+.alert-reset {
+  appearance: none;
+  background: rgba(142, 159, 186, 0.08);
+  border: 1px dashed rgba(142, 159, 186, 0.24);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 12px 14px;
 }
 
 .queue-list {
   display: grid;
   gap: 0.75rem;
+  margin-top: 4px;
 }
 
 .queue-row {
@@ -153,8 +164,7 @@
 
 @media (max-width: 960px) {
   .hero-card,
-  .panel-grid,
-  .detail-card {
+  .panel-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -170,6 +180,7 @@
     padding: 20px;
   }
 
+  .panel-heading,
   .queue-row {
     grid-template-columns: 1fr;
   }
