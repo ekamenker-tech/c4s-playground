@@ -11,14 +11,44 @@
   width: min(100%, 320px);
 }
 
-.inline-alert--error {
+.inline-alert--default.inline-alert--error {
   --alert-background: rgba(255, 128, 136, 0.08);
   --alert-foreground: #ff9999;
 }
 
-.inline-alert--warning {
+.inline-alert--filled.inline-alert--error {
+  --alert-background: #cc3d47;
+  --alert-foreground: #ffffff;
+}
+
+.inline-alert--default.inline-alert--warning {
   --alert-background: rgba(224, 176, 0, 0.08);
   --alert-foreground: #ffeba3;
+}
+
+.inline-alert--filled.inline-alert--warning {
+  --alert-background: #e0b000;
+  --alert-foreground: rgba(0, 0, 0, 0.87);
+}
+
+.inline-alert--default.inline-alert--info {
+  --alert-background: rgba(85, 148, 249, 0.06);
+  --alert-foreground: #bad4fd;
+}
+
+.inline-alert--filled.inline-alert--info {
+  --alert-background: #5594f9;
+  --alert-foreground: rgba(0, 0, 0, 0.87);
+}
+
+.inline-alert--default.inline-alert--success {
+  --alert-background: rgba(69, 196, 90, 0.06);
+  --alert-foreground: #c9eecf;
+}
+
+.inline-alert--filled.inline-alert--success {
+  --alert-background: #45c45a;
+  --alert-foreground: rgba(0, 0, 0, 0.87);
 }
 
 .inline-alert__icon-wrap {
