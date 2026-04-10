@@ -128,17 +128,34 @@ export const iconNames: IconName[] = [
   "ai-stars", "chat-message", "clips4-sale-outline", "clips4-sale", "copy-link", "desktop", "diagonal-arrow", "digital-consent", "done-check", "filter-settings", "full-screen-arrow", "help-and-chat", "loupe-minus", "loupe-plus", "mobile", "music", "paper-document", "paste", "prohibited", "share", "sort-horizontal", "sort-vertical", "telegram", "trash", "user-profile", "warning-circle", "youtube", "add-image", "arrow-collapse-left", "arrow-collapse-right", "arrow-down", "arrow-growth", "arrow-left", "arrow-right", "arrow-up", "at", "bell", "bluesky", "bolt", "bookmark-filled", "bookmark-outline", "calendar", "chart", "chats", "check-mark", "chevron-down-large", "chevron-down-small", "chevron-left-large", "chevron-left-small", "chevron-right-large", "chevron-right-small", "chevron-top-large", "chevron-top-small", "clips", "clock", "close", "cloud-upload", "copy", "dashboard", "direct-message", "discount", "download", "drag-horizontal", "drag-vertical", "edit-pen", "ellipsis-h", "ellipsis-v", "email", "exclamation-triangle", "exclamation", "eye-off", "eye-on", "file-info-alt", "file", "gift", "google", "heart", "history", "home", "image-auto", "image-outline", "info-circle", "instagram", "language", "loading", "lock-alt", "logout", "mag-glass", "megaphone", "menu-burger", "minus", "open-in-new", "order-history", "paper-clip", "pause", "pay-per-message", "payment", "play", "plus", "question-circle", "reddit", "refer", "reload", "repeat", "reuse-copy", "sell-custom", "settings", "single-user", "star", "stop", "store", "switch-user", "tag-off", "tag", "thumbs-down", "thumbs-up", "uil-bill", "upload", "users", "watch", "web", "x",
 ];
 
+type IconSize = "small" | "medium" | "large";
+
+/** CW icon size tokens — small=16px, medium=20px (default), large=24px */
+const iconSizeMap: Record<IconSize, number> = {
+  small:  16,
+  medium: 20,
+  large:  24,
+};
+
 type IconProps = SVGProps<SVGSVGElement> & {
   name: IconName;
+  /**
+   * Semantic size token from the CW icon system.
+   * small = 16px | medium = 20px (default) | large = 24px.
+   * Use raw `size` only for display icons (~80px) or one-off cases.
+   */
+  iconSize?: IconSize;
+  /** Raw pixel override - prefer iconSize for standard UI contexts. */
   size?: number;
 };
 
-export function Icon({ name, size = 20, ...props }: IconProps) {
+export function Icon({ name, iconSize = "medium", size, ...props }: IconProps) {
+  const resolvedSize = size ?? iconSizeMap[iconSize];
   return (
     <svg
       viewBox="0 0 20 20"
-      width={size}
-      height={size}
+      width={resolvedSize}
+      height={resolvedSize}
       fill="none"
       aria-hidden="true"
       {...props}
@@ -147,7 +164,6 @@ export function Icon({ name, size = 20, ...props }: IconProps) {
     </svg>
   );
 }
-
 const iconPaths: Record<IconName, React.ReactNode> = {
   "ai-stars": (
     <>
