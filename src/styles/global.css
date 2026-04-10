@@ -3,6 +3,7 @@
 @import "../tokens/spacing.css";
 @import "../tokens/elevation.css";
 @import "../tokens/theme.css";
+@import "./button.css";
 @import "./inline-alert.css";
 @import "./admin-shell.css";
 @import "./components-page.css";

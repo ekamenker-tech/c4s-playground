@@ -1,0 +1,232 @@
+/*
+ * CW Design System — Button Component
+ *
+ * Variants:  contained | outlined | text | linkButton
+ * Colors:    primary | secondary | error | destructive
+ * Sizes:     medium (44px) | small (30px)
+ * States:    enabled | hover | focus-visible | disabled
+ *
+ * Source: Figma node 4424:1440, Confluence page 2721382404
+ * All values reference --cw-* design tokens only.
+ */
+
+/* ─── Base ───────────────────────────────────────────────────────────────────*/
+.cw-btn {
+  align-items: center;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--cw-radius-base);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--cw-font-family);
+  font-size: var(--cw-text-button-size);
+  font-weight: var(--cw-text-button-weight);
+  gap: var(--cw-space-2);
+  justify-content: center;
+  line-height: var(--cw-text-button-line-height);
+  outline: none;
+  padding: 0 var(--cw-space-4);
+  position: relative;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    border-color     150ms ease,
+    color            150ms ease,
+    box-shadow       150ms ease;
+  white-space: nowrap;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────────*/
+.cw-btn--medium { height: 44px; padding: 0 var(--cw-space-4); }
+.cw-btn--small  { height: 30px; padding: 0 var(--cw-space-3); }
+
+/* ─── Icons ──────────────────────────────────────────────────────────────────*/
+.cw-btn__icon {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+
+.cw-btn__icon svg { height: 20px; width: 20px; }
+
+
+/* ─── Contained — Primary ────────────────────────────────────────────────────*/
+.cw-btn--contained.cw-btn--primary {
+  background: var(--cw-primary-main);
+  color: var(--cw-primary-contrast);
+}
+.cw-btn--contained.cw-btn--primary:hover {
+  background: var(--cw-primary-light);
+}
+.cw-btn--contained.cw-btn--primary:focus-visible {
+  box-shadow: 0 0 0 3px var(--cw-primary-state-focus-visible);
+}
+
+/* ─── Contained — Secondary ──────────────────────────────────────────────────*/
+.cw-btn--contained.cw-btn--secondary {
+  background: var(--cw-secondary-main);
+  color: var(--cw-secondary-contrast);
+}
+.cw-btn--contained.cw-btn--secondary:hover {
+  background: var(--cw-secondary-light);
+}
+.cw-btn--contained.cw-btn--secondary:focus-visible {
+  box-shadow: 0 0 0 3px var(--cw-secondary-state-border);
+}
+
+/* ─── Contained — Error ──────────────────────────────────────────────────────*/
+.cw-btn--contained.cw-btn--error {
+  background: #e55c65;  /* _components/button/error/contained/enabled */
+  color: var(--cw-error-contrast);
+}
+.cw-btn--contained.cw-btn--error:hover {
+  background: #cc3d47;  /* _components/button/error/contained/hover */
+}
+.cw-btn--contained.cw-btn--error:focus-visible {
+  box-shadow: 0 0 0 3px var(--cw-error-state-border);
+}
+
+/* ─── Contained — Destructive ────────────────────────────────────────────────*/
+.cw-btn--contained.cw-btn--destructive {
+  background: var(--cw-destructive-main);
+  color: var(--cw-destructive-contrast);
+}
+.cw-btn--contained.cw-btn--destructive:hover {
+  background: var(--cw-destructive-light);
+}
+.cw-btn--contained.cw-btn--destructive:focus-visible {
+  box-shadow: 0 0 0 3px #9908004d;  /* destructive/_states/focusVisible */
+}
+
+
+/* ─── Outlined — Primary ─────────────────────────────────────────────────────*/
+.cw-btn--outlined.cw-btn--primary {
+  background: transparent;
+  border-color: var(--cw-primary-state-border);
+  color: #b78cff;  /* _components/button/primary/outlined/text */
+}
+.cw-btn--outlined.cw-btn--primary:hover {
+  background: var(--cw-primary-state-hover);
+}
+.cw-btn--outlined.cw-btn--primary:focus-visible {
+  box-shadow: 0 0 0 3px var(--cw-primary-state-focus-visible);
+}
+
+/* ─── Outlined — Secondary ───────────────────────────────────────────────────*/
+.cw-btn--outlined.cw-btn--secondary {
+  background: transparent;
+  border-color: var(--cw-secondary-state-border);
+  color: var(--cw-secondary-contrast);
+}
+.cw-btn--outlined.cw-btn--secondary:hover {
+  background: #51476180;  /* secondary/_states/hover */
+}
+.cw-btn--outlined.cw-btn--secondary:focus-visible {
+  box-shadow: 0 0 0 3px var(--cw-secondary-state-border);
+}
+
+/* ─── Outlined — Error ───────────────────────────────────────────────────────*/
+.cw-btn--outlined.cw-btn--error {
+  background: transparent;
+  border-color: var(--cw-error-state-border);
+  color: var(--cw-error-main);
+}
+.cw-btn--outlined.cw-btn--error:hover {
+  background: #ff808814;  /* error/_states/hover */
+}
+.cw-btn--outlined.cw-btn--error:focus-visible {
+  box-shadow: 0 0 0 3px #ff80884d;  /* error/_states/focusVisible */
+}
+
+/* ─── Outlined — Destructive ─────────────────────────────────────────────────*/
+.cw-btn--outlined.cw-btn--destructive {
+  background: transparent;
+  border-color: var(--cw-destructive-main);
+  color: var(--cw-destructive-light);
+}
+.cw-btn--outlined.cw-btn--destructive:hover {
+  background: #99080029;  /* destructive/_states/selected */
+}
+.cw-btn--outlined.cw-btn--destructive:focus-visible {
+  box-shadow: 0 0 0 3px #9908004d;
+}
+
+
+/* ─── Text variant ───────────────────────────────────────────────────────────*/
+.cw-btn--text {
+  background: transparent;
+  border-color: transparent;
+  padding: 0 var(--cw-space-2);
+}
+.cw-btn--text.cw-btn--primary   { color: #b78cff; }
+.cw-btn--text.cw-btn--secondary { color: var(--cw-secondary-contrast); }
+.cw-btn--text.cw-btn--error     { color: var(--cw-error-main); }
+.cw-btn--text.cw-btn--destructive { color: var(--cw-destructive-light); }
+
+.cw-btn--text.cw-btn--primary:hover     { background: var(--cw-primary-state-hover); }
+.cw-btn--text.cw-btn--secondary:hover   { background: #51476180; }
+.cw-btn--text.cw-btn--error:hover       { background: #ff808814; }
+.cw-btn--text.cw-btn--destructive:hover { background: #99080029; }
+
+.cw-btn--text.cw-btn--primary:focus-visible     { box-shadow: 0 0 0 3px var(--cw-primary-state-focus-visible); }
+.cw-btn--text.cw-btn--secondary:focus-visible   { box-shadow: 0 0 0 3px #7b6c93; }
+.cw-btn--text.cw-btn--error:focus-visible       { box-shadow: 0 0 0 3px #ff80884d; }
+.cw-btn--text.cw-btn--destructive:focus-visible { box-shadow: 0 0 0 3px #9908004d; }
+
+/* ─── LinkButton variant ─────────────────────────────────────────────────────*/
+/* Uses <button> element. Performs an action, not navigation. No padding/bg.   */
+.cw-btn--linkButton {
+  background: transparent;
+  border-color: transparent;
+  color: var(--cw-text-link-default);
+  height: auto;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cw-btn--linkButton.cw-btn--secondary { color: var(--cw-text-secondary); }
+.cw-btn--linkButton:hover  { color: var(--cw-text-link-hover); }
+.cw-btn--linkButton:focus-visible { box-shadow: 0 0 0 3px var(--cw-primary-state-focus-visible); }
+
+
+/* ─── Disabled state (all variants) ─────────────────────────────────────────*/
+.cw-btn--disabled,
+.cw-btn:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Contained disabled */
+.cw-btn--contained.cw-btn--disabled,
+.cw-btn--contained:disabled {
+  background: #ffffff1f;  /* action/disabledBackground */
+  border-color: transparent;
+  color: #ffffff4d;       /* action/disabled */
+}
+.cw-btn--contained.cw-btn--secondary.cw-btn--disabled,
+.cw-btn--contained.cw-btn--secondary:disabled {
+  background: #ffffff0d;  /* _components/button/secondary/disabled/background */
+}
+
+/* Outlined disabled */
+.cw-btn--outlined.cw-btn--disabled,
+.cw-btn--outlined:disabled {
+  border-color: #ffffff1f;
+  color: #ffffff4d;
+}
+
+/* Text disabled */
+.cw-btn--text.cw-btn--disabled,
+.cw-btn--text:disabled {
+  color: #ffffff4d;
+}
+
+/* LinkButton disabled */
+.cw-btn--linkButton.cw-btn--disabled,
+.cw-btn--linkButton:disabled {
+  color: var(--cw-text-link-disabled);
+  text-decoration: none;
+}
