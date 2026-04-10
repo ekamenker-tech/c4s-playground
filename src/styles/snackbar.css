@@ -1,0 +1,139 @@
+/*
+ * CW Design System — Snackbar Component
+ *
+ * Global transient feedback — action confirmations and system events.
+ * No title. Single message. Max one action. Max one visible at a time.
+ *
+ * Surface: overlay (#312c38)
+ * Shadow:  elevation/toast (distinct from overlay and modal)
+ * z-index: 600 (above modal 500, above backdrop 400)
+ * Width:   320px desktop | full-width mobile
+ *
+ * Source: Figma node 5323:6526, Confluence page 2808250380
+ */
+
+/* ─── Positioning ────────────────────────────────────────────────────────────*/
+/* Snackbar sits fixed at bottom-right on desktop, full-width bottom on mobile */
+.cw-snackbar {
+  bottom: var(--cw-space-6);     /* 24px from bottom */
+  position: fixed;
+  right: var(--cw-space-6);
+  z-index: 600;
+}
+
+@media (max-width: 640px) {
+  .cw-snackbar {
+    bottom: var(--cw-space-4);   /* 16px safe margin */
+    left: var(--cw-space-4);
+    right: var(--cw-space-4);
+    width: auto;
+  }
+}
+
+/* ─── Shell ──────────────────────────────────────────────────────────────────*/
+.cw-snackbar {
+  align-items: flex-start;
+  background: var(--cw-surface-overlay);    /* #312c38 */
+  border-radius: var(--cw-radius-lg);       /* 8px */
+  box-shadow: var(--cw-elevation-toast);
+  color: var(--cw-text-primary);
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  padding: var(--cw-space-2) var(--cw-space-3) var(--cw-space-2) var(--cw-space-4); /* 8 12 8 16 */
+  width: 320px;
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────────────────*/
+/* Color matches severity — icon is the only severity-tinted element */
+.cw-snackbar__icon {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 36px;
+  padding-right: var(--cw-space-3);  /* 12px */
+}
+.cw-snackbar__icon svg { height: 20px; width: 20px; }
+
+.cw-snackbar--error   .cw-snackbar__icon { color: #ff9999; }
+.cw-snackbar--warning .cw-snackbar__icon { color: #ffeba3; }
+.cw-snackbar--info    .cw-snackbar__icon { color: var(--cw-blue-200); }
+.cw-snackbar--success .cw-snackbar__icon { color: var(--cw-green-200); }
+
+
+/* ─── Body ───────────────────────────────────────────────────────────────────*/
+.cw-snackbar__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Message — body2, text-primary (NOT severity-tinted per Figma) */
+.cw-snackbar__message {
+  color: var(--cw-text-primary);            /* #e8e8e8 */
+  font-family: var(--cw-font-family);
+  font-size: var(--cw-text-body2-size);     /* 14px */
+  font-weight: var(--cw-text-body2-weight); /* 400 */
+  line-height: var(--cw-text-body2-line-height); /* 20px */
+  margin: 0;
+  padding: var(--cw-space-2) 0;            /* 8px top/bottom */
+}
+
+/* Action — 13px semi-bold, link color, below message */
+.cw-snackbar__action {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--cw-text-link-default);       /* #b78cff */
+  cursor: pointer;
+  font-family: var(--cw-font-family);
+  font-size: 13px;
+  font-weight: var(--cw-font-weight-bold);  /* 600 */
+  line-height: 16px;
+  padding: 0 0 var(--cw-space-2);           /* 8px bottom only */
+  text-align: left;
+  white-space: nowrap;
+}
+.cw-snackbar__action:hover { color: var(--cw-text-link-hover); }
+.cw-snackbar__action:focus-visible {
+  border-radius: var(--cw-radius-base);
+  outline: 2px solid var(--cw-primary-state-focus-visible);
+  outline-offset: 2px;
+}
+
+/* ─── Close button ───────────────────────────────────────────────────────────*/
+/* Uses 16px icon (smaller than standard 20px per Figma) */
+.cw-snackbar__close {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--cw-text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 30px;
+  justify-content: center;
+  margin-left: var(--cw-space-4);
+  margin-top: 2px;
+  padding: var(--cw-space-1);
+  width: 30px;
+}
+.cw-snackbar__close svg { height: 16px; width: 16px; }
+.cw-snackbar__close:hover { color: var(--cw-text-primary); }
+.cw-snackbar__close:focus-visible {
+  border-radius: var(--cw-radius-lg);
+  outline: 2px solid var(--cw-primary-state-focus-visible);
+  outline-offset: 2px;
+}
+
+/* ─── Entry animation ────────────────────────────────────────────────────────*/
+@keyframes cw-snackbar-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cw-snackbar {
+  animation: cw-snackbar-in 200ms ease;
+}
