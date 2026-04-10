@@ -230,3 +230,33 @@
   color: var(--cw-text-link-disabled);
   text-decoration: none;
 }
+
+/* ─── IconButton ─────────────────────────────────────────────────────────────
+ * Square 44×44px icon-only button. Inherits all color/state rules above.
+ * Only medium size exists per design system spec (no small variant).
+ * Uses --cw-radius-lg (8px) instead of --cw-radius-base (4px).
+ * ────────────────────────────────────────────────────────────────────────── */
+.cw-icon-btn {
+  border-radius: var(--cw-radius-lg);
+  height: 44px;
+  padding: var(--cw-space-3);
+  width: 44px;
+}
+
+/* Focused overrides — IconButton uses border-based focus ring (not box-shadow)
+   matching the Figma spec exactly for Text variant */
+.cw-icon-btn.cw-btn--text.cw-btn--primary:focus-visible {
+  border-color: var(--cw-primary-main);
+  box-shadow: none;
+}
+.cw-icon-btn.cw-btn--text.cw-btn--secondary:focus-visible {
+  border-color: var(--cw-charcoal-400);
+  box-shadow: none;
+}
+
+/* Secondary contained focused uses mauve-700 bg */
+.cw-icon-btn.cw-btn--contained.cw-btn--secondary:focus-visible {
+  background: var(--cw-mauve-700);
+  border-color: #7b6c93;  /* secondary/_states/focusVisible */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
