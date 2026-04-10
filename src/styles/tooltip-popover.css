@@ -1,0 +1,103 @@
+/*
+ * CW Design System — Tooltip & Popover
+ *
+ * Both use surface.overlay and elevation.overlay per the Surface & Elevation spec.
+ * Neither manages its own positioning or z-index — pair with Floating UI or Popper.
+ *
+ * Tooltip  — hover/focus, text only, no title/actions, 4px radius
+ * Popover  — click-triggered, rich content, 8px radius, 340px wide
+ *
+ * Source: Figma nodes 5789:2017 (Tooltip), 5785:6287 (Popover)
+ */
+
+/* ─── Shared surface ─────────────────────────────────────────────────────────*/
+.cw-tooltip,
+.cw-popover {
+  background: var(--cw-surface-overlay);   /* #312c38 */
+  box-shadow: var(--cw-elevation-overlay);
+  position: absolute;                      /* caller controls top/left */
+  z-index: 600;                            /* above modal (500) */
+}
+
+/* ─── Tooltip ────────────────────────────────────────────────────────────────*/
+.cw-tooltip {
+  border-radius: var(--cw-radius-base);    /* 4px */
+  color: var(--cw-text-secondary);         /* #ffffffb2 */
+  font-family: var(--cw-font-family);
+  font-size: var(--cw-text-caption-size);  /* 12px */
+  font-weight: var(--cw-text-caption-weight); /* 400 */
+  line-height: var(--cw-text-caption-line-height); /* 16px */
+  padding: var(--cw-space-2) var(--cw-space-3);    /* 8px 12px */
+  pointer-events: none;                    /* tooltip never intercepts clicks */
+  white-space: nowrap;                     /* single-line default */
+}
+
+/* Multi-line variant — wraps at 240px */
+.cw-tooltip--multiline {
+  max-width: 240px;
+  white-space: normal;
+}
+
+
+/* ─── Popover ────────────────────────────────────────────────────────────────*/
+.cw-popover {
+  border-radius: var(--cw-radius-lg);      /* 8px */
+  display: flex;
+  flex-direction: column;
+  gap: var(--cw-space-2);                  /* 8px between content blocks */
+  padding: var(--cw-space-4);              /* 16px */
+  width: 340px;
+}
+
+/* Content wrapper — vertical stack */
+.cw-popover__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cw-space-2);
+  width: 100%;
+}
+
+/* Header — subtitle1: 16px / medium */
+.cw-popover__title {
+  color: var(--cw-text-primary);
+  font-family: var(--cw-font-family);
+  font-size: var(--cw-text-subtitle1-size);    /* 16px */
+  font-weight: var(--cw-text-subtitle1-weight); /* 500 */
+  line-height: var(--cw-text-subtitle1-line-height); /* 24px */
+  margin: 0;
+}
+
+/* Body — body2: 14px / regular / secondary */
+.cw-popover__description {
+  color: var(--cw-text-secondary);
+  font-family: var(--cw-font-family);
+  font-size: var(--cw-text-body2-size);    /* 14px */
+  font-weight: var(--cw-text-body2-weight); /* 400 */
+  line-height: var(--cw-text-body2-line-height); /* 20px */
+  margin: 0;
+}
+
+/* Action / link area */
+.cw-popover__action {
+  color: var(--cw-text-link-default);      /* #b78cff */
+  font-size: var(--cw-text-body2-size);
+  font-weight: var(--cw-text-body2-weight);
+  line-height: var(--cw-text-body2-line-height);
+}
+
+.cw-popover__action a,
+.cw-popover__action button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cw-popover__action a:hover,
+.cw-popover__action button:hover {
+  color: var(--cw-text-link-hover);
+}
