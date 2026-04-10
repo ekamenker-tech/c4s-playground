@@ -15,7 +15,8 @@
 :root {
 
   /* ─── Border Radius ──────────────────────────────────── */
-  --cw-radius-base: 4px;
+  --cw-radius-base: 4px;  /* borderRadius/4 — default for inputs, buttons */
+  --cw-radius-lg:   8px;  /* borderRadius/8 — cards, panels, modals       */
 
   /* ─── Text ───────────────────────────────────────────── */
   --cw-text-primary:   #e8e8e8;
@@ -33,27 +34,36 @@
 
 
   /* ─── Primary (Purple) ───────────────────────────────── */
-  --cw-primary-main:             var(--cw-purple-500);  /* #533188 */
-  --cw-primary-light:            var(--cw-purple-400);  /* #6f42b8 */
-  --cw-primary-dark:             var(--cw-purple-600);  /* #42276d */
-  --cw-primary-contrast:         #fffffff2;
-  --cw-primary-state-hover:      #53318866;
-  --cw-primary-state-selected:   #53318829;
-  --cw-primary-state-focus:      var(--cw-purple-200);  /* #b8a1dd */
+  --cw-primary-main:                var(--cw-purple-500);  /* #533188 */
+  --cw-primary-light:               var(--cw-purple-400);  /* #6f42b8 */
+  --cw-primary-dark:                var(--cw-purple-600);  /* #42276d */
+  --cw-primary-contrast:            #fffffff2;
+  --cw-primary-state-hover:         #53318866;
+  --cw-primary-state-selected:      #53318829;
+  --cw-primary-state-focus:         var(--cw-purple-200);  /* #b8a1dd */
   --cw-primary-state-focus-visible: var(--cw-purple-200);
-  --cw-primary-state-border:     var(--cw-purple-300);  /* #9371cc */
+  --cw-primary-state-border:        var(--cw-purple-300);  /* #9371cc */
 
   /* ─── Secondary (Charcoal) ───────────────────────────── */
-  --cw-secondary-main:     var(--cw-charcoal-500);  /* #292431 */
-  --cw-secondary-light:    var(--cw-charcoal-400);  /* #514761 */
-  --cw-secondary-dark:     var(--cw-charcoal-600);  /* #201c26 */
-  --cw-secondary-contrast: #fffffff2;
+  --cw-secondary-main:          var(--cw-charcoal-500);  /* #292431 */
+  --cw-secondary-light:         var(--cw-charcoal-400);  /* #514761 */
+  --cw-secondary-dark:          var(--cw-charcoal-600);  /* #201c26 */
+  --cw-secondary-contrast:      #fffffff2;
+  --cw-secondary-state-border:  var(--cw-charcoal-400);  /* #514761 */
 
   /* ─── Error (Red) ────────────────────────────────────── */
-  --cw-error-main:     #ff8088;
-  --cw-error-light:    var(--cw-red-400);   /* #ffa39e */
-  --cw-error-dark:     #e55c65;
-  --cw-error-contrast: #fffffff2;
+  --cw-error-main:          #ff8088;
+  --cw-error-light:         var(--cw-red-400);   /* #ffa39e */
+  --cw-error-dark:          #e55c65;
+  --cw-error-contrast:      #fffffff2;
+  --cw-error-state-border:  #ff8088b2;
+
+  /* ─── Destructive (Dark Red) ─────────────────────────── */
+  /* Separate from error — used for irreversible destructive actions */
+  --cw-destructive-main:     var(--cw-red-800);   /* #990800 */
+  --cw-destructive-light:    var(--cw-red-700);   /* #e60b00 */
+  --cw-destructive-contrast: #fffffff2;
+
 
   /* ─── Warning (Yellow) ───────────────────────────────── */
   --cw-warning-main:     var(--cw-yellow-600);  /* #e0b000 */
@@ -72,7 +82,6 @@
   --cw-success-light:    var(--cw-green-500);  /* #77d487 */
   --cw-success-dark:     var(--cw-green-700);  /* #309741 */
   --cw-success-contrast: #000000de;
-
 
   /* ─── Interaction Overlays ───────────────────────────── */
   --cw-interaction-subtle-0: #baa7ff03;  /* ~1%  — barely-there / zebra  */
