@@ -62,7 +62,7 @@ export function ValidationMessage({
         .join(" ")}
     >
       <span className="cw-validation-msg__icon" aria-hidden="true">
-        <Icon name={severityIconName[severity]} iconSize="small" />
+        <Icon name={severityIconName[severity]} iconSize="medium" />
       </span>
       <p className="cw-validation-msg__text">{message}</p>
     </div>
