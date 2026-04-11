@@ -5,14 +5,10 @@
  * Styles:     default (tinted bg) | filled (solid bg)
  *
  * Colors verified against Figma node 5322:4038.
- * All values reference --cw-* semantic tokens only. No raw hex values.
  *
- * Token mapping from Figma:
- *   default bg   → --cw-{severity}-alert-bg      (opacity tint)
- *   default fg   → --cw-{severity}-alert-color   (light text for readability)
- *   default action text → --cw-{severity}-main   (brighter, distinct from fg)
- *   filled bg    → --cw-{severity}-main (warning/info/success) or --cw-error-filled-bg
- *   filled fg    → --cw-{severity}-contrast
+ * Icon color uses --ia-icon-fg (severity `main` token) — distinct from
+ * --ia-fg (alert-color, the pastel text color). In Figma the icon fill is
+ * bound to the main color variable at the icon component level.
  *
  * Source: Figma node 5322:4038, Confluence page 2807988258
  */
@@ -22,21 +18,25 @@
 .cw-inline-alert--default.cw-inline-alert--error {
   --ia-bg:          var(--cw-error-alert-bg);      /* rgba(255,128,136,0.08) */
   --ia-fg:          var(--cw-error-alert-color);   /* #ff9999 */
+  --ia-icon-fg:     var(--cw-error-main);          /* #ff8088 */
   --ia-action-fg:   var(--cw-error-main);          /* #ff8088 */
 }
 .cw-inline-alert--default.cw-inline-alert--warning {
   --ia-bg:          var(--cw-warning-alert-bg);    /* rgba(224,176,0,0.08) */
   --ia-fg:          var(--cw-warning-alert-color); /* #ffeba3 */
+  --ia-icon-fg:     var(--cw-warning-main);        /* #e0b000 */
   --ia-action-fg:   var(--cw-warning-main);        /* #e0b000 */
 }
 .cw-inline-alert--default.cw-inline-alert--info {
   --ia-bg:          var(--cw-info-alert-bg);       /* rgba(85,148,249,0.06) */
   --ia-fg:          var(--cw-info-alert-color);    /* #bad4fd */
+  --ia-icon-fg:     var(--cw-info-main);           /* #5594f9 */
   --ia-action-fg:   var(--cw-info-main);           /* #5594f9 */
 }
 .cw-inline-alert--default.cw-inline-alert--success {
   --ia-bg:          var(--cw-success-alert-bg);    /* rgba(69,196,90,0.06) */
   --ia-fg:          var(--cw-success-alert-color); /* #c9eecf */
+  --ia-icon-fg:     var(--cw-success-main);        /* #45c45a */
   --ia-action-fg:   var(--cw-success-main);        /* #45c45a */
 }
 
@@ -45,21 +45,25 @@
 .cw-inline-alert--filled.cw-inline-alert--error {
   --ia-bg:          var(--cw-error-filled-bg);     /* #cc3d47 */
   --ia-fg:          var(--cw-error-contrast);      /* #fffffff2 */
+  --ia-icon-fg:     var(--cw-error-contrast);
   --ia-action-fg:   var(--cw-error-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--warning {
   --ia-bg:          var(--cw-warning-main);        /* #e0b000 */
   --ia-fg:          var(--cw-warning-contrast);    /* #000000de */
+  --ia-icon-fg:     var(--cw-warning-contrast);
   --ia-action-fg:   var(--cw-warning-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--info {
   --ia-bg:          var(--cw-info-main);           /* #5594f9 */
   --ia-fg:          var(--cw-info-contrast);       /* #000000de */
+  --ia-icon-fg:     var(--cw-info-contrast);
   --ia-action-fg:   var(--cw-info-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--success {
   --ia-bg:          var(--cw-success-main);        /* #45c45a */
   --ia-fg:          var(--cw-success-contrast);    /* #000000de */
+  --ia-icon-fg:     var(--cw-success-contrast);
   --ia-action-fg:   var(--cw-success-contrast);
 }
 
@@ -68,6 +72,7 @@
 .cw-inline-alert {
   --ia-bg:        transparent;
   --ia-fg:        var(--cw-text-primary);
+  --ia-icon-fg:   var(--cw-text-primary);
   --ia-action-fg: var(--cw-text-primary);
 
   align-items: flex-start;
@@ -82,10 +87,10 @@
   width: min(100%, 320px);
 }
 
-/* ─── Icon ───────────────────────────────────────────────────────────────────*/
+/* ─── Icon — uses --ia-icon-fg (main color), not --ia-fg (pastel text) ───────*/
 .cw-inline-alert__icon {
   align-items: center;
-  color: var(--ia-fg);
+  color: var(--ia-icon-fg);
   display: flex;
   height: 36px;
   padding-right: var(--cw-space-3);

@@ -9,13 +9,15 @@
  * z-index: 600 (above modal 500, above backdrop 400)
  * Width:   320px desktop | full-width mobile
  *
+ * Icon color: --cw-text-primary (#e8e8e8) — Figma uses --text/primary for
+ * the icon container, same as message text. No severity tint on icons.
+ *
  * Source: Figma node 5323:6526, Confluence page 2808250380
  */
 
 /* ─── Positioning ────────────────────────────────────────────────────────────*/
-/* Snackbar sits fixed at bottom-right on desktop, full-width bottom on mobile */
 .cw-snackbar {
-  bottom: var(--cw-space-6);     /* 24px from bottom */
+  bottom: var(--cw-space-6);
   position: fixed;
   right: var(--cw-space-6);
   z-index: 600;
@@ -23,7 +25,7 @@
 
 @media (max-width: 640px) {
   .cw-snackbar {
-    bottom: var(--cw-space-4);   /* 16px safe margin */
+    bottom: var(--cw-space-4);
     left: var(--cw-space-4);
     right: var(--cw-space-4);
     width: auto;
@@ -40,26 +42,21 @@
   display: flex;
   gap: 0;
   overflow: hidden;
-  padding: var(--cw-space-2) var(--cw-space-3) var(--cw-space-2) var(--cw-space-4); /* 8 12 8 16 */
+  padding: var(--cw-space-2) var(--cw-space-3) var(--cw-space-2) var(--cw-space-4);
   width: 320px;
 }
 
 /* ─── Icon ───────────────────────────────────────────────────────────────────*/
-/* Color matches severity — icon is the only severity-tinted element */
+/* Figma: icon container inherits --text/primary — no severity tint */
 .cw-snackbar__icon {
   align-items: center;
+  color: var(--cw-text-primary);            /* #e8e8e8 — same as message */
   display: flex;
   flex-shrink: 0;
   height: 36px;
-  padding-right: var(--cw-space-3);  /* 12px */
+  padding-right: var(--cw-space-3);
 }
 .cw-snackbar__icon svg { height: 20px; width: 20px; }
-
-.cw-snackbar--error   .cw-snackbar__icon { color: #ff9999; }
-.cw-snackbar--warning .cw-snackbar__icon { color: #ffeba3; }
-.cw-snackbar--info    .cw-snackbar__icon { color: var(--cw-blue-200); }
-.cw-snackbar--success .cw-snackbar__icon { color: var(--cw-green-200); }
-
 
 /* ─── Body ───────────────────────────────────────────────────────────────────*/
 .cw-snackbar__body {
@@ -69,15 +66,15 @@
   min-width: 0;
 }
 
-/* Message — body2, text-primary (NOT severity-tinted per Figma) */
+/* Message — body2, text-primary */
 .cw-snackbar__message {
   color: var(--cw-text-primary);            /* #e8e8e8 */
   font-family: var(--cw-font-family);
-  font-size: var(--cw-text-body2-size);     /* 14px */
-  font-weight: var(--cw-text-body2-weight); /* 400 */
-  line-height: var(--cw-text-body2-line-height); /* 20px */
+  font-size: var(--cw-text-body2-size);
+  font-weight: var(--cw-text-body2-weight);
+  line-height: var(--cw-text-body2-line-height);
   margin: 0;
-  padding: var(--cw-space-2) 0;            /* 8px top/bottom */
+  padding: var(--cw-space-2) 0;
 }
 
 /* Action — 13px semi-bold, link color, below message */
@@ -89,9 +86,9 @@
   cursor: pointer;
   font-family: var(--cw-font-family);
   font-size: 13px;
-  font-weight: var(--cw-font-weight-bold);  /* 600 */
+  font-weight: var(--cw-font-weight-bold);
   line-height: 16px;
-  padding: 0 0 var(--cw-space-2);           /* 8px bottom only */
+  padding: 0 0 var(--cw-space-2);
   text-align: left;
   white-space: nowrap;
 }
@@ -103,7 +100,6 @@
 }
 
 /* ─── Close button ───────────────────────────────────────────────────────────*/
-/* Uses 16px icon (smaller than standard 20px per Figma) */
 .cw-snackbar__close {
   align-items: center;
   appearance: none;
