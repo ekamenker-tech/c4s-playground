@@ -13,7 +13,27 @@
  * Source: Figma node 5322:4038, Confluence page 2807988258
  */
 
-/* ─── Default style ──────────────────────────────────────────────────────────*/
+/* ─── Base layout + fallback token values ────────────────────────────────────*/
+/* Severity overrides must come AFTER to win the cascade on equal specificity  */
+.cw-inline-alert {
+  --ia-bg:        transparent;
+  --ia-fg:        var(--cw-text-primary);
+  --ia-icon-fg:   var(--cw-text-primary);
+  --ia-action-fg: var(--cw-text-primary);
+
+  align-items: flex-start;
+  background: var(--ia-bg);
+  border-radius: var(--cw-radius-lg);
+  color: var(--ia-fg);
+  display: grid;
+  gap: 0;
+  grid-template-columns: 32px minmax(0, 1fr) auto auto;
+  min-height: 44px;
+  padding: var(--cw-space-2) var(--cw-space-3) var(--cw-space-2) var(--cw-space-4);
+  width: min(100%, 320px);
+}
+
+/* ─── Default style — severity overrides ────────────────────────────────────*/
 
 .cw-inline-alert--default.cw-inline-alert--error {
   --ia-bg:          var(--cw-error-alert-bg);      /* rgba(255,128,136,0.08) */
@@ -40,7 +60,7 @@
   --ia-action-fg:   var(--cw-success-main);        /* #45c45a */
 }
 
-/* ─── Filled style ───────────────────────────────────────────────────────────*/
+/* ─── Filled style — severity overrides ─────────────────────────────────────*/
 
 .cw-inline-alert--filled.cw-inline-alert--error {
   --ia-bg:          var(--cw-error-filled-bg);     /* #cc3d47 */
@@ -65,26 +85,6 @@
   --ia-fg:          var(--cw-success-contrast);    /* #000000de */
   --ia-icon-fg:     var(--cw-success-contrast);
   --ia-action-fg:   var(--cw-success-contrast);
-}
-
-
-/* ─── Layout ─────────────────────────────────────────────────────────────────*/
-.cw-inline-alert {
-  --ia-bg:        transparent;
-  --ia-fg:        var(--cw-text-primary);
-  --ia-icon-fg:   var(--cw-text-primary);
-  --ia-action-fg: var(--cw-text-primary);
-
-  align-items: flex-start;
-  background: var(--ia-bg);
-  border-radius: var(--cw-radius-lg);
-  color: var(--ia-fg);
-  display: grid;
-  gap: 0;
-  grid-template-columns: 32px minmax(0, 1fr) auto auto;
-  min-height: 44px;
-  padding: var(--cw-space-2) var(--cw-space-3) var(--cw-space-2) var(--cw-space-4);
-  width: min(100%, 320px);
 }
 
 /* ─── Icon — uses --ia-icon-fg (main color), not --ia-fg (pastel text) ───────*/

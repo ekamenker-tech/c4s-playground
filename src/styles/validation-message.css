@@ -25,10 +25,26 @@
  * Source: Figma node 5153:17866, Confluence page 2807988258
  */
 
-/* ─── Component-scoped color tokens ─────────────────────────────────────────*/
+/* ─── Base layout + default token values ────────────────────────────────────*/
+/* NOTE: severity overrides must come AFTER this block to win the cascade     */
+.cw-validation-msg {
+  --vm-icon-fg: var(--cw-error-main);
+  --vm-fg:      var(--cw-error-main);
+  --vm-border:  var(--cw-error-state-selected);
+
+  align-items: flex-start;
+  border: 1px solid var(--vm-border);
+  border-radius: var(--cw-radius-lg);
+  color: var(--vm-fg);
+  display: inline-flex;
+  gap: 0;
+  padding: var(--cw-space-2) var(--cw-space-4);  /* 8px 16px */
+}
+
+/* ─── Severity overrides — must be after .cw-validation-msg ─────────────────*/
 .cw-validation-msg--error {
   --vm-icon-fg: var(--cw-error-main);             /* #ff8088 */
-  --vm-fg:      var(--cw-error-main);             /* #ff8088 — same for error */
+  --vm-fg:      var(--cw-error-main);             /* #ff8088 */
   --vm-border:  var(--cw-error-state-selected);   /* rgba(255,128,136,0.16) */
 }
 .cw-validation-msg--warning {
@@ -47,28 +63,13 @@
   --vm-border:  var(--cw-success-state-selected); /* rgba(69,196,90,0.16) */
 }
 
-/* ─── Layout ─────────────────────────────────────────────────────────────────*/
-.cw-validation-msg {
-  --vm-icon-fg: var(--cw-error-main);
-  --vm-fg:      var(--cw-error-main);
-  --vm-border:  var(--cw-error-state-selected);
-
-  align-items: flex-start;
-  border: 1px solid var(--vm-border);
-  border-radius: var(--cw-radius-lg);
-  color: var(--vm-fg);
-  display: inline-flex;
-  gap: 0;
-  padding: var(--cw-space-2) var(--cw-space-4);  /* 8px 16px */
-}
-
-/* Compact — no border, reduced padding */
+/* ─── Compact — no border, reduced padding ───────────────────────────────────*/
 .cw-validation-msg--compact {
   border: 0;
   padding: 0 var(--cw-space-2);
 }
 
-/* ─── Icon — uses main color (brighter), not the pastel text color ───────────*/
+/* ─── Icon — uses --vm-icon-fg (main color, brighter) ───────────────────────*/
 .cw-validation-msg__icon {
   align-items: center;
   color: var(--vm-icon-fg);
