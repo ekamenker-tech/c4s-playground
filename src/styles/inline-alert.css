@@ -4,55 +4,71 @@
  * Severities: error | warning | info | success
  * Styles:     default (tinted bg) | filled (solid bg)
  *
- * All colors from Figma component tokens (_components/alert/*)
- * mapped to --cw-* semantic tokens only. No raw hex values.
+ * Colors verified against Figma node 5322:4038.
+ * All values reference --cw-* semantic tokens only. No raw hex values.
+ *
+ * Token mapping from Figma:
+ *   default bg   → --cw-{severity}-alert-bg      (opacity tint)
+ *   default fg   → --cw-{severity}-alert-color   (light text for readability)
+ *   default action text → --cw-{severity}-main   (brighter, distinct from fg)
+ *   filled bg    → --cw-{severity}-main (warning/info/success) or --cw-error-filled-bg
+ *   filled fg    → --cw-{severity}-contrast
  *
  * Source: Figma node 5322:4038, Confluence page 2807988258
  */
 
-/* ─── Component-scoped color tokens ─────────────────────────────────────────*/
+/* ─── Default style ──────────────────────────────────────────────────────────*/
 
-/* Default style — tinted backgrounds, semantic fg color */
 .cw-inline-alert--default.cw-inline-alert--error {
-  --ia-bg: color-mix(in srgb, var(--cw-error-main) 8%, transparent);
-  --ia-fg: var(--cw-error-main);
+  --ia-bg:          var(--cw-error-alert-bg);      /* rgba(255,128,136,0.08) */
+  --ia-fg:          var(--cw-error-alert-color);   /* #ff9999 */
+  --ia-action-fg:   var(--cw-error-main);          /* #ff8088 */
 }
 .cw-inline-alert--default.cw-inline-alert--warning {
-  --ia-bg: color-mix(in srgb, var(--cw-warning-main) 8%, transparent);
-  --ia-fg: var(--cw-warning-light);       /* #ffcc17 — readable on dark bg */
+  --ia-bg:          var(--cw-warning-alert-bg);    /* rgba(224,176,0,0.08) */
+  --ia-fg:          var(--cw-warning-alert-color); /* #ffeba3 */
+  --ia-action-fg:   var(--cw-warning-main);        /* #e0b000 */
 }
 .cw-inline-alert--default.cw-inline-alert--info {
-  --ia-bg: color-mix(in srgb, var(--cw-info-main) 8%, transparent);
-  --ia-fg: var(--cw-info-light);          /* #75a8fa — readable on dark bg */
+  --ia-bg:          var(--cw-info-alert-bg);       /* rgba(85,148,249,0.06) */
+  --ia-fg:          var(--cw-info-alert-color);    /* #bad4fd */
+  --ia-action-fg:   var(--cw-info-main);           /* #5594f9 */
 }
 .cw-inline-alert--default.cw-inline-alert--success {
-  --ia-bg: color-mix(in srgb, var(--cw-success-main) 8%, transparent);
-  --ia-fg: var(--cw-success-light);       /* #77d487 — readable on dark bg */
+  --ia-bg:          var(--cw-success-alert-bg);    /* rgba(69,196,90,0.06) */
+  --ia-fg:          var(--cw-success-alert-color); /* #c9eecf */
+  --ia-action-fg:   var(--cw-success-main);        /* #45c45a */
 }
 
-/* Filled style — solid semantic backgrounds */
+/* ─── Filled style ───────────────────────────────────────────────────────────*/
+
 .cw-inline-alert--filled.cw-inline-alert--error {
-  --ia-bg: var(--cw-error-dark);          /* #e55c65 */
-  --ia-fg: var(--cw-error-contrast);      /* #fffffff2 */
+  --ia-bg:          var(--cw-error-filled-bg);     /* #cc3d47 */
+  --ia-fg:          var(--cw-error-contrast);      /* #fffffff2 */
+  --ia-action-fg:   var(--cw-error-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--warning {
-  --ia-bg: var(--cw-warning-main);        /* #e0b000 */
-  --ia-fg: var(--cw-warning-contrast);    /* #000000de */
+  --ia-bg:          var(--cw-warning-main);        /* #e0b000 */
+  --ia-fg:          var(--cw-warning-contrast);    /* #000000de */
+  --ia-action-fg:   var(--cw-warning-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--info {
-  --ia-bg: var(--cw-info-main);           /* #5594f9 */
-  --ia-fg: var(--cw-info-contrast);       /* #000000de */
+  --ia-bg:          var(--cw-info-main);           /* #5594f9 */
+  --ia-fg:          var(--cw-info-contrast);       /* #000000de */
+  --ia-action-fg:   var(--cw-info-contrast);
 }
 .cw-inline-alert--filled.cw-inline-alert--success {
-  --ia-bg: var(--cw-success-main);        /* #45c45a */
-  --ia-fg: var(--cw-success-contrast);    /* #000000de */
+  --ia-bg:          var(--cw-success-main);        /* #45c45a */
+  --ia-fg:          var(--cw-success-contrast);    /* #000000de */
+  --ia-action-fg:   var(--cw-success-contrast);
 }
 
 
 /* ─── Layout ─────────────────────────────────────────────────────────────────*/
 .cw-inline-alert {
-  --ia-bg: transparent;
-  --ia-fg: var(--cw-text-primary);
+  --ia-bg:        transparent;
+  --ia-fg:        var(--cw-text-primary);
+  --ia-action-fg: var(--cw-text-primary);
 
   align-items: flex-start;
   background: var(--ia-bg);
@@ -111,7 +127,7 @@
   appearance: none;
   background: transparent;
   border: 0;
-  color: var(--ia-fg);
+  color: var(--ia-action-fg);
   cursor: pointer;
   display: inline-flex;
   font-family: var(--cw-font-family);

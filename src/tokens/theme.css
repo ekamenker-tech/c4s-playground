@@ -52,11 +52,15 @@
   --cw-secondary-state-border:  var(--cw-charcoal-400);  /* #514761 */
 
   /* ─── Error (Red) ────────────────────────────────────── */
-  --cw-error-main:          #ff8088;
-  --cw-error-light:         var(--cw-red-400);   /* #ffa39e */
-  --cw-error-dark:          #e55c65;
-  --cw-error-contrast:      #fffffff2;
-  --cw-error-state-border:  #ff8088b2;
+  --cw-error-main:              #ff8088;
+  --cw-error-light:             var(--cw-red-400);   /* #ffa39e */
+  --cw-error-dark:              #e55c65;
+  --cw-error-filled-bg:         #cc3d47;             /* _components/button/error/contained/hover */
+  --cw-error-contrast:          #fffffff2;
+  --cw-error-state-border:      #ff8088b2;
+  --cw-error-state-selected:    rgba(255, 128, 136, 0.16); /* error/_states/selected */
+  --cw-error-alert-color:       #ff9999;             /* _components/alert/error/color */
+  --cw-error-alert-bg:          rgba(255, 128, 136, 0.08); /* _components/alert/error/background */
 
   /* ─── Destructive (Dark Red) ─────────────────────────── */
   /* Separate from error — used for irreversible destructive actions */
@@ -64,24 +68,32 @@
   --cw-destructive-light:    var(--cw-red-700);   /* #e60b00 */
   --cw-destructive-contrast: #fffffff2;
 
-
   /* ─── Warning (Yellow) ───────────────────────────────── */
-  --cw-warning-main:     var(--cw-yellow-600);  /* #e0b000 */
-  --cw-warning-light:    var(--cw-yellow-500);  /* #ffcc17 */
-  --cw-warning-dark:     var(--cw-yellow-700);  /* #a88400 */
-  --cw-warning-contrast: #000000de;
+  --cw-warning-main:              var(--cw-yellow-600);  /* #e0b000 */
+  --cw-warning-light:             var(--cw-yellow-500);  /* #ffcc17 */
+  --cw-warning-dark:              var(--cw-yellow-700);  /* #a88400 */
+  --cw-warning-contrast:          #000000de;
+  --cw-warning-state-selected:    rgba(224, 176, 0, 0.16); /* warning/_states/selected */
+  --cw-warning-alert-color:       var(--cw-yellow-200);  /* #ffeba3 — _components/alert/warning/color */
+  --cw-warning-alert-bg:          rgba(224, 176, 0, 0.08); /* _components/alert/warning/background */
 
   /* ─── Info (Blue) ────────────────────────────────────── */
-  --cw-info-main:     var(--cw-blue-500);   /* #5594f9 */
-  --cw-info-light:    var(--cw-blue-400);   /* #75a8fa */
-  --cw-info-dark:     var(--cw-blue-600);   /* #136af7 */
-  --cw-info-contrast: #000000de;
+  --cw-info-main:              var(--cw-blue-500);   /* #5594f9 */
+  --cw-info-light:             var(--cw-blue-400);   /* #75a8fa */
+  --cw-info-dark:              var(--cw-blue-600);   /* #136af7 */
+  --cw-info-contrast:          #000000de;
+  --cw-info-state-selected:    rgba(85, 148, 249, 0.16); /* info/_states/selected */
+  --cw-info-alert-color:       var(--cw-blue-200);   /* #bad4fd — _components/alert/info/color */
+  --cw-info-alert-bg:          rgba(85, 148, 249, 0.06); /* _components/alert/info/background */
 
   /* ─── Success (Green) ────────────────────────────────── */
-  --cw-success-main:     var(--cw-green-600);  /* #45c45a */
-  --cw-success-light:    var(--cw-green-500);  /* #77d487 */
-  --cw-success-dark:     var(--cw-green-700);  /* #309741 */
-  --cw-success-contrast: #000000de;
+  --cw-success-main:              var(--cw-green-600);  /* #45c45a */
+  --cw-success-light:             var(--cw-green-500);  /* #77d487 */
+  --cw-success-dark:              var(--cw-green-700);  /* #309741 */
+  --cw-success-contrast:          #000000de;
+  --cw-success-state-selected:    rgba(69, 196, 90, 0.16); /* success/_states/selected */
+  --cw-success-alert-color:       var(--cw-green-200);  /* #c9eecf — _components/alert/success/color */
+  --cw-success-alert-bg:          rgba(69, 196, 90, 0.06); /* _components/alert/success/background */
 
   /* ─── Interaction Overlays ───────────────────────────── */
   --cw-interaction-subtle-0: #baa7ff03;  /* ~1%  — barely-there / zebra  */

@@ -9,33 +9,36 @@
  *   - default: bordered, 16px 8px padding
  *   - compact: no border, 8px 0 padding (inline/dense contexts)
  *
- * All colors reference --cw-* semantic tokens only. No raw hex values.
+ * Colors verified against Figma node 5325:1696.
+ * Token mapping from Figma:
+ *   fg text  → --cw-error-main for error, --cw-{severity}-alert-color for others
+ *   border   → --cw-{severity}-state-selected (16% opacity tint)
  *
  * Source: Figma node 5325:1696, Confluence page 2807988258
  */
 
 /* ─── Component-scoped color tokens ─────────────────────────────────────────*/
 .cw-validation-msg--error {
-  --vm-fg:     var(--cw-error-main);
-  --vm-border: color-mix(in srgb, var(--cw-error-main) 16%, transparent);
+  --vm-fg:     var(--cw-error-main);             /* #ff8088 */
+  --vm-border: var(--cw-error-state-selected);   /* rgba(255,128,136,0.16) */
 }
 .cw-validation-msg--warning {
-  --vm-fg:     var(--cw-warning-light);   /* #ffcc17 — readable on dark bg */
-  --vm-border: color-mix(in srgb, var(--cw-warning-main) 16%, transparent);
+  --vm-fg:     var(--cw-warning-alert-color);    /* #ffeba3 */
+  --vm-border: var(--cw-warning-state-selected); /* rgba(224,176,0,0.16) */
 }
 .cw-validation-msg--info {
-  --vm-fg:     var(--cw-info-light);      /* #75a8fa — readable on dark bg */
-  --vm-border: color-mix(in srgb, var(--cw-info-main) 16%, transparent);
+  --vm-fg:     var(--cw-info-alert-color);       /* #bad4fd */
+  --vm-border: var(--cw-info-state-selected);    /* rgba(85,148,249,0.16) */
 }
 .cw-validation-msg--success {
-  --vm-fg:     var(--cw-success-light);   /* #77d487 — readable on dark bg */
-  --vm-border: color-mix(in srgb, var(--cw-success-main) 16%, transparent);
+  --vm-fg:     var(--cw-success-alert-color);    /* #c9eecf */
+  --vm-border: var(--cw-success-state-selected); /* rgba(69,196,90,0.16) */
 }
 
 /* ─── Layout ─────────────────────────────────────────────────────────────────*/
 .cw-validation-msg {
   --vm-fg:     var(--cw-error-main);
-  --vm-border: color-mix(in srgb, var(--cw-error-main) 16%, transparent);
+  --vm-border: var(--cw-error-state-selected);
 
   align-items: flex-start;
   border: 1px solid var(--vm-border);
