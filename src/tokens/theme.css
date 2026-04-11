@@ -15,8 +15,8 @@
 :root {
 
   /* ─── Border Radius ──────────────────────────────────── */
-  --cw-radius-base: 4px;  /* borderRadius/4 — default for inputs, buttons */
-  --cw-radius-lg:   8px;  /* borderRadius/8 — cards, panels, modals       */
+  --cw-radius-base: 8px;   /* borderRadius/8 — default for inputs, buttons */
+  --cw-radius-lg:   8px;   /* borderRadius/8 — cards, panels, modals       */
 
   /* ─── Text ───────────────────────────────────────────── */
   --cw-text-primary:   #e8e8e8;
