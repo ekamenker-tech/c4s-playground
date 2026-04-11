@@ -29,7 +29,8 @@ export function PlaygroundPage() {
   const [loadingIdx, setLoadingIdx]       = useState<number | null>(null);
   const [modalOpen, setModalOpen]         = useState(false);
   const [modalType, setModalType]         = useState<ModalType>("simple");
-  const [popoverOpen, setPopoverOpen]     = useState(false);
+  const [popover1Open, setPopover1Open]   = useState(false);
+  const [popover2Open, setPopover2Open]   = useState(false);
   const [snack, setSnack]                 = useState<SnackState>(null);
   const [iconQuery, setIconQuery]         = useState("");
 
@@ -308,7 +309,6 @@ export function PlaygroundPage() {
               <p className="pg-section-desc">Tooltip = hover, text only. Popover = click, rich content. No backdrop on either.</p>
             </header>
 
-            {/* Tooltip — uses pg-tooltip-wrap pattern, positioning via CSS */}
             <section className="pg-card">
               <h2 className="pg-card__title">Tooltip — hover to reveal (top · bottom · left · right)</h2>
               <div className="pg-row pg-row--center pg-row--gap-xl">
@@ -321,22 +321,26 @@ export function PlaygroundPage() {
               </div>
             </section>
 
-            {/* Popover */}
+            {/* Popover 1 — default slot API */}
             <section className="pg-card">
-              <h2 className="pg-card__title">Popover — click to toggle</h2>
+              <h2 className="pg-card__title">Popover — title / description / action slots</h2>
               <div className="pg-row pg-row--center">
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <Button variant="outlined" color="secondary" onClick={() => setPopoverOpen((v) => !v)} endIcon={<Icon name="chevron-down-small" />}>
-                    {popoverOpen ? "Close" : "Open"} popover
+                  <Button
+                    variant="outlined" color="secondary"
+                    onClick={() => { setPopover1Open((v) => !v); setPopover2Open(false); }}
+                    endIcon={<Icon name="chevron-down-small" />}
+                  >
+                    {popover1Open ? "Close" : "Open"} popover
                   </Button>
-                  {popoverOpen && (
+                  {popover1Open && (
                     <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, zIndex: 300 }}>
                       <Popover
                         title="Clip details"
                         description="This clip was uploaded on April 10 and is currently under review. Approval usually takes 24–48 hours."
                         action={
                           <button
-                            onClick={() => { setPopoverOpen(false); showSnack("info", "View log opened"); }}
+                            onClick={() => { setPopover1Open(false); showSnack("info", "View log opened"); }}
                             style={{ color: "var(--cw-text-link-default)", background: "none", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
                           >
                             View full log
@@ -349,20 +353,25 @@ export function PlaygroundPage() {
               </div>
             </section>
 
+            {/* Popover 2 — custom children */}
             <section className="pg-card">
               <h2 className="pg-card__title">Popover — custom children</h2>
               <div className="pg-row pg-row--center">
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <Button variant="text" color="primary" startIcon={<Icon name="info-circle" />} onClick={() => setPopoverOpen((v) => !v)}>
+                  <Button
+                    variant="text" color="primary"
+                    startIcon={<Icon name="info-circle" />}
+                    onClick={() => { setPopover2Open((v) => !v); setPopover1Open(false); }}
+                  >
                     More info
                   </Button>
-                  {popoverOpen && (
+                  {popover2Open && (
                     <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, zIndex: 300 }}>
                       <Popover>
                         <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 8 }}>
                           <p style={{ color: "var(--cw-text-primary)", fontWeight: 500, margin: 0 }}>Custom content</p>
                           <p style={{ color: "var(--cw-text-secondary)", fontSize: "0.875rem", margin: 0 }}>Popover accepts any React children for non-standard layouts.</p>
-                          <Button size="small" color="primary" onClick={() => setPopoverOpen(false)}>Got it</Button>
+                          <Button size="small" color="primary" onClick={() => setPopover2Open(false)}>Got it</Button>
                         </div>
                       </Popover>
                     </div>
