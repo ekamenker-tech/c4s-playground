@@ -9,8 +9,12 @@
  * z-index: 600 (above modal 500, above backdrop 400)
  * Width:   320px desktop | full-width mobile
  *
- * Icon color: --cw-text-primary (#e8e8e8) — Figma uses --text/primary for
- * the icon container, same as message text. No severity tint on icons.
+ * Icon color verified via Figma variable_defs (node 5204:1301/1311/1321/1331):
+ *   error   → error/main   #ff8088
+ *   warning → warning/main #e0b000
+ *   info    → info/main    #5594f9
+ *   success → success/main #45c45a
+ * Message text uses --text/primary (#e8e8e8) — no severity tint.
  *
  * Source: Figma node 5323:6526, Confluence page 2808250380
  */
@@ -47,16 +51,20 @@
 }
 
 /* ─── Icon ───────────────────────────────────────────────────────────────────*/
-/* Figma: icon container inherits --text/primary — no severity tint */
+/* Figma variable_defs confirm each severity uses its main color on the icon  */
 .cw-snackbar__icon {
   align-items: center;
-  color: var(--cw-text-primary);            /* #e8e8e8 — same as message */
   display: flex;
   flex-shrink: 0;
   height: 36px;
   padding-right: var(--cw-space-3);
 }
 .cw-snackbar__icon svg { height: 20px; width: 20px; }
+
+.cw-snackbar--error   .cw-snackbar__icon { color: var(--cw-error-main);   /* #ff8088 */ }
+.cw-snackbar--warning .cw-snackbar__icon { color: var(--cw-warning-main); /* #e0b000 */ }
+.cw-snackbar--info    .cw-snackbar__icon { color: var(--cw-info-main);    /* #5594f9 */ }
+.cw-snackbar--success .cw-snackbar__icon { color: var(--cw-success-main); /* #45c45a */ }
 
 /* ─── Body ───────────────────────────────────────────────────────────────────*/
 .cw-snackbar__body {
@@ -66,7 +74,7 @@
   min-width: 0;
 }
 
-/* Message — body2, text-primary */
+/* Message — body2, text-primary (no severity tint per Figma) */
 .cw-snackbar__message {
   color: var(--cw-text-primary);            /* #e8e8e8 */
   font-family: var(--cw-font-family);
