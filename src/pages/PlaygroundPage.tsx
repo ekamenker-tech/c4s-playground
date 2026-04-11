@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "../components/Button";
 import { ButtonDropdown } from "../components/ButtonDropdown";
 import { ButtonWithLoader, Spinner } from "../components/ButtonWithLoader";
 import { Icon, iconNames, type IconName } from "../components/Icon";
 import { IconButton } from "../components/IconButton";
-import { InlineAlert, type InlineAlertSeverity, type InlineAlertStyle } from "../components/InlineAlert";
+import { InlineAlert, type InlineAlertSeverity } from "../components/InlineAlert";
 import { Modal, type ModalType } from "../components/Modal";
 import { Backdrop } from "../components/Backdrop";
 import { Popover } from "../components/Popover";
@@ -262,8 +262,8 @@ export function PlaygroundPage() {
             <section className="pg-card">
               <h2 className="pg-card__title">InlineAlert — with actions + close</h2>
               <div className="pg-stack">
-                <InlineAlert severity="error"   title="Upload failed." description="All 3 files failed format validation." actionLabel="Retry" onAction={() => showSnack("info","Retry triggered")} />
-                <InlineAlert severity="warning" title="Draft expires in 24 hours." description="Save or publish before the deadline." actionLabel="Publish" onAction={() => showSnack("success","Published")} onClose={() => {}} />
+                <InlineAlert severity="error"   title="Upload failed." description="All 3 files failed format validation." actionLabel="Retry" onAction={() => showSnack("info", "Retry triggered")} />
+                <InlineAlert severity="warning" title="Draft expires in 24 hours." description="Save or publish before the deadline." actionLabel="Publish" onAction={() => showSnack("success", "Published")} onClose={() => {}} />
               </div>
             </section>
           </div>
@@ -290,10 +290,9 @@ export function PlaygroundPage() {
             </section>
 
             <section className="pg-card">
-              <h2 className="pg-card__title">Modal — with icon title</h2>
+              <h2 className="pg-card__title">Modal — with icon in title</h2>
               <div className="pg-row">
-                <Button variant="outlined" color="error"
-                  onClick={() => { setModalType("simple"); setModalOpen(true); }}>
+                <Button variant="outlined" color="error" onClick={() => { setModalType("simple"); setModalOpen(true); }}>
                   Open with icon
                 </Button>
               </div>
@@ -309,20 +308,23 @@ export function PlaygroundPage() {
               <p className="pg-section-desc">Tooltip = hover, text only. Popover = click, rich content. No backdrop on either.</p>
             </header>
 
+            {/* Tooltip — uses pg-tooltip-wrap pattern, positioning via CSS */}
             <section className="pg-card">
-              <h2 className="pg-card__title">Tooltip — placements</h2>
+              <h2 className="pg-card__title">Tooltip — hover to reveal (top · bottom · left · right)</h2>
               <div className="pg-row pg-row--center pg-row--gap-xl">
                 {(["top","bottom","left","right"] as const).map((placement) => (
-                  <Tooltip key={placement} content={`Tooltip ${placement}`} placement={placement}>
+                  <div key={placement} className={`pg-tooltip-wrap pg-tooltip-wrap--${placement}`}>
                     <Button variant="outlined" color="secondary" size="small">{placement}</Button>
-                  </Tooltip>
+                    <Tooltip content={`Tooltip ${placement}`} />
+                  </div>
                 ))}
               </div>
             </section>
 
+            {/* Popover */}
             <section className="pg-card">
               <h2 className="pg-card__title">Popover — click to toggle</h2>
-              <div className="pg-row pg-row--center" style={{ position: "relative" }}>
+              <div className="pg-row pg-row--center">
                 <div style={{ position: "relative", display: "inline-block" }}>
                   <Button variant="outlined" color="secondary" onClick={() => setPopoverOpen((v) => !v)} endIcon={<Icon name="chevron-down-small" />}>
                     {popoverOpen ? "Close" : "Open"} popover
@@ -332,7 +334,14 @@ export function PlaygroundPage() {
                       <Popover
                         title="Clip details"
                         description="This clip was uploaded on April 10 and is currently under review. Approval usually takes 24–48 hours."
-                        action={<button onClick={() => { setPopoverOpen(false); showSnack("info","View log opened"); }} style={{ color: "var(--cw-text-link-default)", background:"none", border:"none", cursor:"pointer", fontSize:"0.875rem" }}>View full log</button>}
+                        action={
+                          <button
+                            onClick={() => { setPopoverOpen(false); showSnack("info", "View log opened"); }}
+                            style={{ color: "var(--cw-text-link-default)", background: "none", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
+                          >
+                            View full log
+                          </button>
+                        }
                       />
                     </div>
                   )}
@@ -341,11 +350,10 @@ export function PlaygroundPage() {
             </section>
 
             <section className="pg-card">
-              <h2 className="pg-card__title">Popover — custom content</h2>
-              <div className="pg-row pg-row--center" style={{ position: "relative" }}>
+              <h2 className="pg-card__title">Popover — custom children</h2>
+              <div className="pg-row pg-row--center">
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <Button variant="text" color="primary" startIcon={<Icon name="info-circle" />}
-                    onClick={() => setPopoverOpen((v) => !v)}>
+                  <Button variant="text" color="primary" startIcon={<Icon name="info-circle" />} onClick={() => setPopoverOpen((v) => !v)}>
                     More info
                   </Button>
                   {popoverOpen && (
@@ -353,7 +361,7 @@ export function PlaygroundPage() {
                       <Popover>
                         <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 8 }}>
                           <p style={{ color: "var(--cw-text-primary)", fontWeight: 500, margin: 0 }}>Custom content</p>
-                          <p style={{ color: "var(--cw-text-secondary)", fontSize: "0.875rem", margin: 0 }}>Popover accepts any React children when you need a non-standard layout.</p>
+                          <p style={{ color: "var(--cw-text-secondary)", fontSize: "0.875rem", margin: 0 }}>Popover accepts any React children for non-standard layouts.</p>
                           <Button size="small" color="primary" onClick={() => setPopoverOpen(false)}>Got it</Button>
                         </div>
                       </Popover>

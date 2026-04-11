@@ -1,12 +1,12 @@
 /* ─── Playground Layout ──────────────────────────────────────────────────────
  * Full-page two-column layout: fixed sidebar + scrollable content area.
- * Background uses --cw-base (darkest surface token).
+ * Background uses --cw-surface-base (darkest surface token).
  * ─────────────────────────────────────────────────────────────────────────── */
 
 .pg-layout {
   display: flex;
   min-height: 100vh;
-  background: var(--cw-surface-base, #1a1622);
+  background: var(--cw-surface-base, #201c26);
 }
 
 /* ─── Sidebar ────────────────────────────────────────────────────────────── */
@@ -14,7 +14,7 @@
 .pg-sidebar {
   width: 200px;
   flex-shrink: 0;
-  background: var(--cw-surface-raised, #221e2a);
+  background: var(--cw-surface-raised, #292430);
   border-right: 1px solid var(--cw-divider);
   padding: 24px 12px;
   position: sticky;
@@ -98,7 +98,7 @@
 /* ─── Cards ──────────────────────────────────────────────────────────────── */
 
 .pg-card {
-  background: var(--cw-surface-raised, #221e2a);
+  background: var(--cw-surface-raised, #292430);
   border: 1px solid var(--cw-divider);
   border-radius: var(--cw-radius-lg);
   padding: 20px 24px;
@@ -127,7 +127,7 @@
 
 .pg-row--center   { justify-content: flex-start; }
 .pg-row--wrap     { flex-wrap: wrap; }
-.pg-row--gap-xl   { gap: 24px; }
+.pg-row--gap-xl   { gap: 32px; }
 
 .pg-stack {
   display: flex;
@@ -155,7 +155,7 @@
 .pg-search {
   width: 100%;
   max-width: 320px;
-  background: var(--cw-surface-base, #1a1622);
+  background: var(--cw-surface-base, #201c26);
   border: 1px solid var(--cw-divider);
   border-radius: var(--cw-radius-base);
   padding: 8px 12px;
@@ -220,4 +220,53 @@
 .pg-icon-demo span {
   font-size: 0.75rem;
   color: var(--cw-text-helper);
+}
+
+/* ─── Tooltip wrapper (playground-only positioning) ─────────────────────── */
+/* Wraps a trigger + <Tooltip> bubble. Shows bubble on hover/focus-within.   */
+
+.pg-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Hide the bubble by default */
+.pg-tooltip-wrap .cw-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s;
+}
+
+/* Show on hover or keyboard focus */
+.pg-tooltip-wrap:hover .cw-tooltip,
+.pg-tooltip-wrap:focus-within .cw-tooltip {
+  opacity: 1;
+}
+
+/* Placement — top (default) */
+.pg-tooltip-wrap--top .cw-tooltip {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Placement — bottom */
+.pg-tooltip-wrap--bottom .cw-tooltip {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Placement — left */
+.pg-tooltip-wrap--left .cw-tooltip {
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Placement — right */
+.pg-tooltip-wrap--right .cw-tooltip {
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
 }
