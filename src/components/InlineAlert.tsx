@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Icon } from "./Icon";
 
 export type InlineAlertSeverity = "error" | "warning" | "info" | "success";
 export type InlineAlertStyle   = "default" | "filled";
@@ -16,36 +17,12 @@ type InlineAlertProps = {
   className?:   string;
 };
 
-const severityIcons: Record<InlineAlertSeverity, ReactNode> = {
-  error: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 5.9V10.2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.55" r="1" fill="currentColor" />
-    </svg>
-  ),
-  warning: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 3.1L17 15.9H3L10 3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M10 7V10.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.25" r="1" fill="currentColor" />
-    </svg>
-  ),
-  info: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 8.5V13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="6.1" r="1" fill="currentColor" />
-    </svg>
-  ),
-  success: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6.5 10.1L8.9 12.5L13.7 7.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
+const severityIconName: Record<InlineAlertSeverity, "warning-circle" | "exclamation-triangle" | "info-circle" | "done-check"> = {
+  error:   "warning-circle",
+  warning: "exclamation-triangle",
+  info:    "info-circle",
+  success: "done-check",
 };
-
 
 /**
  * InlineAlert — section-level or workflow-level contextual alert.
@@ -86,7 +63,7 @@ export function InlineAlert({
     >
       {/* Icon */}
       <span className="cw-inline-alert__icon" aria-hidden="true">
-        {severityIcons[severity]}
+        <Icon name={severityIconName[severity]} />
       </span>
 
       {/* Text content */}
@@ -114,10 +91,7 @@ export function InlineAlert({
           aria-label={`Dismiss ${severity} alert`}
           onClick={onClose}
         >
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5.5 5.5L14.5 14.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-            <path d="M14.5 5.5L5.5 14.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
+          <Icon name="close" />
         </button>
       )}
     </section>

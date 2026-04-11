@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Icon } from "./Icon";
 
 export type ValidationSeverity = "error" | "warning" | "info" | "success";
 export type ValidationVariant  = "default" | "compact";
@@ -15,34 +16,11 @@ type ValidationMessageProps = {
   className?: string;
 };
 
-const icons: Record<ValidationSeverity, ReactNode> = {
-  error: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 3.1L17 15.9H3L10 3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M10 7V10.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.25" r="1" fill="currentColor" />
-    </svg>
-  ),
-  warning: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 3.1L17 15.9H3L10 3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M10 7V10.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.25" r="1" fill="currentColor" />
-    </svg>
-  ),
-  info: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 8.5V13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="6.1" r="1" fill="currentColor" />
-    </svg>
-  ),
-  success: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6.5 10.1L8.9 12.5L13.7 7.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
+const severityIconName: Record<ValidationSeverity, "warning-circle" | "exclamation-triangle" | "info-circle" | "done-check"> = {
+  error:   "warning-circle",
+  warning: "exclamation-triangle",
+  info:    "info-circle",
+  success: "done-check",
 };
 
 /**
@@ -77,7 +55,7 @@ export function ValidationMessage({
         .join(" ")}
     >
       <span className="cw-validation-msg__icon" aria-hidden="true">
-        {icons[severity]}
+        <Icon name={severityIconName[severity]} iconSize="small" />
       </span>
       <p className="cw-validation-msg__text">{message}</p>
     </div>

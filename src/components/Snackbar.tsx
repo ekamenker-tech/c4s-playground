@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback, type ReactNode } from "react";
+import { Icon } from "./Icon";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -36,37 +37,12 @@ type SnackbarProps = {
   className?: string;
 };
 
-
-const severityIcons: Record<SnackbarSeverity, ReactNode> = {
-  error: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 5.9V10.2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.55" r="1" fill="currentColor" />
-    </svg>
-  ),
-  warning: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 3.1L17 15.9H3L10 3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M10 7V10.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="13.25" r="1" fill="currentColor" />
-    </svg>
-  ),
-  info: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 8.5V13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-      <circle cx="10" cy="6.1" r="1" fill="currentColor" />
-    </svg>
-  ),
-  success: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6.5 10.1L8.9 12.5L13.7 7.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
+const severityIconName: Record<SnackbarSeverity, "warning-circle" | "exclamation-triangle" | "info-circle" | "done-check"> = {
+  error:   "warning-circle",
+  warning: "exclamation-triangle",
+  info:    "info-circle",
+  success: "done-check",
 };
-
 
 /**
  * Snackbar — global transient feedback for action outcomes.
@@ -139,7 +115,7 @@ export function Snackbar({
     >
       {/* Icon */}
       <span className="cw-snackbar__icon" aria-hidden="true">
-        {severityIcons[severity]}
+        <Icon name={severityIconName[severity]} />
       </span>
 
       {/* Message + action stacked vertically */}
@@ -160,10 +136,7 @@ export function Snackbar({
           aria-label="Dismiss notification"
           onClick={onClose}
         >
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+          <Icon name="close" />
         </button>
       )}
     </div>
