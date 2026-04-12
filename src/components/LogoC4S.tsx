@@ -8,13 +8,13 @@ import type { SVGProps } from "react";
  * Original viewBox: 200×37. Use height prop to scale.
  */
 export function LogoC4S({ height = 21, ...props }: SVGProps<SVGSVGElement> & { height?: number }) {
-  const w = Math.round((200 / 37) * height);
+  const w = Math.round((200 / 21) * height);
   return (
     <svg
       width={w}
       height={height}
-      viewBox="0 0 200 37"
-      fill="none"
+      viewBox="0 0 200 21"
+      fill="none" overflow="visible"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Clips4Sale"
       role="img"
@@ -43,3 +43,4 @@ export function LogoC4S({ height = 21, ...props }: SVGProps<SVGSVGElement> & { h
     </svg>
   );
 }
+
